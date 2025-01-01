@@ -2,6 +2,7 @@ package com.example.littlelemon
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
@@ -46,7 +46,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.intl.Locale
-import androidx.compose.ui.text.intl.Locale.Companion
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -62,14 +61,22 @@ import com.example.littlelemon.ui.theme.LittleLemonTheme
 fun HomeScreen(navHostController: NavHostController, modifier: Modifier = Modifier) {
     var searchText by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf<String?>(null) }
-    val menuItems by AppDatabase.getDatabase(LocalContext.current).menuDao().getAllMenuItems().observeAsState(listOf())
-    val menuCategories = menuItems.map { it.category.capitalize(Locale.current) }
-    var filteredItems = menuItems
-    if (selectedCategory != null) {
-        filteredItems = filteredItems.filter { it.category == selectedCategory }
+    val menuItems by AppDatabase.getDatabase(LocalContext.current).menuDao().getAllMenuItems()
+        .observeAsState(listOf())
+
+    val menuCategories = menuItems
+        .map { it.category }
+        .filter { it.isNotEmpty() }
+        .distinct()
+        .map { it.capitalize(Locale.current) }
+
+    var filteredItems = if (selectedCategory != null) {
+        menuItems.filter { it.category.equals(selectedCategory, ignoreCase = true)  }
+    } else {
+        menuItems
     }
 
-    if (!searchText.isBlank()) {
+    if (searchText.isNotBlank()) {
         filteredItems = filteredItems.filter { it.title.contains(searchText, ignoreCase = true) }
     }
 
@@ -258,8 +265,7 @@ fun MenuBreakDown(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(horizontal = 16.dp, vertical = 20.dp),
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
@@ -267,7 +273,9 @@ fun MenuBreakDown(
             style = MaterialTheme.typography.headlineSmall,
         )
         Row(
-            modifier = Modifier.wrapContentHeight().selectableGroup(),
+            modifier = Modifier
+                .horizontalScroll(rememberScrollState())
+                .selectableGroup(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             menuCategories.forEach { category ->
@@ -304,7 +312,7 @@ fun MenuBreakDownPreview() {
     LittleLemonTheme {
         var selectedCategory by remember { mutableStateOf<String?>(null) }
         MenuBreakDown(
-            menuCategories = listOf("Starters", "Mains", "Desserts", "Sides"),
+            menuCategories = listOf("Starters", "Mains", "Desserts", "Sides", "Drinks", "Specials"),
             selectedCategory = selectedCategory,
             onCategorySelected = { selectedCategory = it })
     }

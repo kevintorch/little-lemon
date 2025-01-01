@@ -51,16 +51,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private suspend fun fetchMenu(): MenuNetwork {
-        return getMenu()
-    }
-
     private fun saveMenuToDatabase(menuNetwork: MenuNetwork) {
         val menuNetworkItems = menuNetwork.menu
         appDatabase.menuDao().insertAllMenuItems(menuNetworkItems.toMenuItemList())
     }
 
-    private suspend fun getMenu(): MenuNetwork {
+    private suspend fun fetchMenu(): MenuNetwork {
         return client.get("https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu.json")
             .body()
     }
