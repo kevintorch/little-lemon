@@ -1,4 +1,4 @@
-package com.example.littlelemon
+package com.littlelemon.littlelemonmenu
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -51,11 +51,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.example.littlelemon.data.AppDatabase
-import com.example.littlelemon.data.MenuItem
-import com.example.littlelemon.data.SampleData
-import com.example.littlelemon.ui.theme.HighlightLight
-import com.example.littlelemon.ui.theme.LittleLemonTheme
+import com.littlelemon.littlelemonmenu.data.AppDatabase
+import com.littlelemon.littlelemonmenu.data.MenuItem
+import com.littlelemon.littlelemonmenu.data.SampleData
+import com.littlelemon.littlelemonmenu.ui.theme.HighlightLight
+import com.littlelemon.littlelemonmenu.ui.theme.LittleLemonTheme
 
 @Composable
 fun HomeScreen(navHostController: NavHostController, modifier: Modifier = Modifier) {
@@ -116,7 +116,7 @@ private fun HomeScreenContent(
             }
         })
     }) { padding ->
-        Column(modifier = Modifier.padding(padding)) {
+        Column(modifier = Modifier.padding(padding).verticalScroll(rememberScrollState())) {
             HeroSection {
                 OutlinedTextField(
                     value = searchText,
@@ -148,7 +148,7 @@ private fun HomeScreenContent(
 
 @Composable
 fun MenuItems(modifier: Modifier = Modifier, menuItems: List<MenuItem> = listOf()) {
-    Column(modifier = modifier.verticalScroll(rememberScrollState())) {
+    Column(modifier = modifier) {
         menuItems.forEach { menuItem ->
             MenuItem(
                 title = menuItem.title,
@@ -192,19 +192,6 @@ fun MenuItem(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .sizeIn(maxWidth = 70.dp, maxHeight = 70.dp)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MenuItemPreview() {
-    LittleLemonTheme {
-        MenuItem(
-            title = "Greek Salad",
-            description = "The famous greek salad of crispy lettuce, peppers, olives and our Chicago...",
-            price = "12.99",
-            image = R.drawable.hero_image
         )
     }
 }
@@ -304,6 +291,19 @@ fun MenuBreakDown(
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MenuItemPreview() {
+    LittleLemonTheme {
+        MenuItem(
+            title = "Greek Salad",
+            description = "The famous greek salad of crispy lettuce, peppers, olives and our Chicago...",
+            price = "12.99",
+            image = R.drawable.hero_image
+        )
     }
 }
 

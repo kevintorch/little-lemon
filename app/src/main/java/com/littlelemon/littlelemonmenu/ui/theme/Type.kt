@@ -1,11 +1,11 @@
-package com.example.littlelemon.ui.theme
+package com.littlelemon.littlelemonmenu.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.littlelemon.R
+import com.littlelemon.littlelemonmenu.R
 
 // Set of Material typography styles to start with
 

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.littlelemon"
+    namespace = "com.littlelemon.littlelemonmenu"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.littlelemon"
+        applicationId = "com.littlelemon.littlelemonmenu"
         minSdk = 21
         targetSdk = 35
         versionCode = 1

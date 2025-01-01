@@ -1,4 +1,4 @@
-package com.example.littlelemon
+package com.littlelemon.littlelemonmenu
 
 import org.junit.Test
 

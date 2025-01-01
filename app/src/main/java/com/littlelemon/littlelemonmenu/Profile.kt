@@ -1,4 +1,4 @@
-package com.example.littlelemon
+package com.littlelemon.littlelemonmenu
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,7 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.littlelemon.ui.theme.LittleLemonTheme
+import com.littlelemon.littlelemonmenu.ui.theme.LittleLemonTheme
 
 @Composable
 fun ProfileScreen(navigation: NavHostController, modifier: Modifier = Modifier) {

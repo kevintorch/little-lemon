@@ -1,16 +1,18 @@
-package com.example.littlelemon
+package com.littlelemon.littlelemonmenu
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.Lifecycle.State.CREATED
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.littlelemon.data.AppDatabase
-import com.example.littlelemon.data.MenuNetwork
-import com.example.littlelemon.data.toMenuItemList
-import com.example.littlelemon.ui.theme.LittleLemonTheme
+import com.littlelemon.littlelemonmenu.data.AppDatabase
+import com.littlelemon.littlelemonmenu.data.MenuNetwork
+import com.littlelemon.littlelemonmenu.data.toMenuItemList
+import com.littlelemon.littlelemonmenu.ui.theme.LittleLemonTheme
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
@@ -46,7 +48,7 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             LittleLemonTheme {
-                LittleLemonNavigation()
+                LittleLemonNavigation(modifier = Modifier.safeContentPadding())
             }
         }
     }
