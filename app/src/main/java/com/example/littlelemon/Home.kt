@@ -71,7 +71,7 @@ fun HomeScreen(navHostController: NavHostController, modifier: Modifier = Modifi
         .map { it.capitalize(Locale.current) }
 
     var filteredItems = if (selectedCategory != null) {
-        menuItems.filter { it.category.equals(selectedCategory, ignoreCase = true)  }
+        menuItems.filter { it.category.equals(selectedCategory, ignoreCase = true) }
     } else {
         menuItems
     }
@@ -156,6 +156,7 @@ fun MenuItems(modifier: Modifier = Modifier, menuItems: List<MenuItem> = listOf(
                 price = menuItem.price,
                 image = menuItem.image
             )
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
         }
     }
 }
