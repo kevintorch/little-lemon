@@ -1,6 +1,6 @@
 # Little Lemon Food Ordering App
 
-![Little Lemon Logo](./Little%20Lemon%20Logo.png)
+![Little Lemon Logo](./Banner.jpg)
 
 ## 📌 Overview
 The **Little Lemon Food Ordering App** is a capstone project in the **Meta Android Developer Course on Coursera**. It is built using **Jetpack Compose**, enabling users to browse menus, place food orders.
