@@ -21,6 +21,3 @@ The **Little Lemon Food Ordering App** is a capstone project in the **Meta Andro
 
 ## 🤝 Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
-
-## 📄 License
-This project is licensed under the [MIT License](LICENSE).
